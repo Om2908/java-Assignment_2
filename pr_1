@@ -1,0 +1,27 @@
+import java.util.*;
+public class Program
+{
+double p=1;
+Program()
+{
+p=1;
+}
+Program(double d)
+{
+p=d;
+}
+public double getArea(){
+return ((double)3.14)*p*p;
+}
+public double getPeri(){
+return 2*((double)3.14)*p;
+}
+public static void Number main(String[] args) {
+double r,a,p;
+Scanner scan=new Scanner(System.in);
+r=scan.nextDouble();
+Program p1 = new Program(r);
+System.out.println("area : " + p1.getArea());
+System.out.println("permiter : " + p1.getPeri());
+}
+}
