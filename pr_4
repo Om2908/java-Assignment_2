@@ -1,0 +1,125 @@
+import java.util.*;
+class PRgram {
+ static public int id;
+ static public double balance;
+ final static private double annualInterestRate = 7;
+ static public String dateCreated;
+public PRgram() {
+ id = 0;
+ balance = 500;
+ dateCreated = "06/11/2003";
+}
+static Scanner s = new Scanner(System.in);
+public PRgram(int Ac, double bal, String d) {
+ id = Ac;
+ balance = bal;
+ dateCreated = d;
+}
+public void mutator(int ac, double bal, String d) {
+ id = ac;
+ balance = bal;
+ dateCreated = d;
+}
+public double getMonthlyInterestRate() {
+ return annualInterestRate / 12;
+}
+public double getMonthlyInterest() {
+return (annualInterestRate / 12) * balance / 100;
+}
+public void withdraw(double draw) {
+balance = balance - draw;
+}
+public void Accessor() {
+ System.out.println("Your PRgram :" + id);
+ System.out.println("Total balance in your PRgram is :"
++ balance + " Rupees");
+ System.out.println("The intrest given by the bank is 
+:" +annualInterestRate);
+ System.out.println("The at which your PRgram was 
+created is :"+ dateCreated);
+}
+public double deposit(double dep) {
+return balance + dep;
+}
+@Override
+public String toString() {
+String res = "";
+res += "PRgram number : " + id + "\n";
+res += "Balance in PRgram is : " + balance + "\n";
+res += "Annual Interest Rate given by bank is : " +
+annualInterestRate + "\n";
+res += "Date of creation of PRgram is : " + dateCreated +
+"\n";
+return res;
+}
+}
+class CheckingPRgram extends PRgram {
+protected double OVERDRAFT_LIMIT = -100;
+public CheckingPRgram(int id, double balance,String date) {
+super(id, balance,date);
+}
+@Override
+public void withdraw(double amount) {
+if (balance - amount >= OVERDRAFT_LIMIT) {
+super.withdraw(amount);
+}
+else
+System.out.println("Over drawing is passing the given
+limit :");
+}
+@Override
+public String toString() {
+return CheckingPRgram{"+ "mBalance=" + balance +'}';
+}
+}
+class SavingsPRgram extends PRgram {
+protected double OVERDRAFT_LIMIT = 0;
+public SavingsPRgram(int id, double balance,String date) {
+super(id, balance, date);
+}
+@Override
+public void withdraw(double amount) {
+if (balance - amount >= OVERDRAFT_LIMIT || balance - amount 
+<=
+OVERDRAFT_LIMIT)
+super.withdraw(amount);
+}
+@Override
+public String toString() {
+return "SavingsPRgram{" + "net Balance =" + balance +'}';
+}
+}
+public class P_4 {
+public static void main(String[] args)
+{
+PRgram PRgram = new PRgram(111, 200,"06-11-2003");
+System.out.println("simple PRgram");
+System.out.println(PRgram);
+System.out.println("----------------------------------------
+----
+------------------------------------------");
+CheckingPRgram checkingPRgram = new CheckingPRgram(112,
+250,"05-11-2003");
+System.out.println("Checking PRgram");
+System.out.println(PRgram);
+System.out.println("Enter ammount for withdrawing in 
+checking
+PRgram :");
+Scanner s = new Scanner(System.in);
+double ammount = s.nextDouble();
+ checkingPRgram.withdraw(ammount);
+ System.out.println(checkingPRgram);
+ SavingsPRgram savingsPRgram = new SavingsPRgram(113,
+10000,"04-11-2003");
+ System.out.println("Saving PRgram");
+ System.out.println(PRgram);
+ System.out.println("Enter ammount for withdrawing in 
+saving
+PRgram :");
+double ammounts = s.nextDouble();
+savingsPRgram.withdraw(ammounts);
+System.out.println(savingsPRgram);
+}
+}
+
+
