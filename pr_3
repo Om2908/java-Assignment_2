@@ -1,0 +1,141 @@
+import java.util.*;
+class Atm {
+private int c1;
+private String idNumber;
+private double balance;
+public String getIdNumber() {
+return idNumber;
+}
+public double getBalance() {
+return balance;
+}
+Atm() {
+c1++;
+if (c1 < 10) {
+idNumber = "AC00" + (c1);
+} else {
+idNumber = "AC0" + (c1);
+}
+balance = 300;
+}
+void Number withdraw(double money) {
+if (balance - money >= 300) {
+balance -= money;
+System.out.println(money + " Rs successfully withdrawn.");
+System.out.println("Remaining Balance is : " + balance);
+} else {
+System.out.println("Insufficient balance to withdraw the 
+amount.");
+}
+}
+void Number deposit(double amount) {
+balance += amount;
+System.out.println(amount + "Rs deposited to your acc1.");
+System.out.println("Current Balance is : " + balance);
+}
+void Number MoneyTransfer(Atm o1, double amount) {
+if (balance - amount >= 300) {
+balance -= amount;
+o1.balance += amount;
+System.out.println(amount + " Rs successfully Transferred.");
+System.out.println("Remaining Balance is : " + balance);
+}
+else {
+System.out.println("Insufficient balance to transfer the 
+amount.");
+}
+}
+}
+public class P_3 {
+public static void Number main(String[] args)
+{
+Scanner sc = new Scanner(System.in);
+String idNumber = "";
+String idNumber2 = "";
+ boolean flag = true;
+ int choice;
+ double amt;
+ ArrayList<Atm> people = new ArrayList<Atm>();
+for (int i = 1; i <= 10; i++) {
+people.add(new Atm());
+}
+System.out.println("Enter Your Acc1 Number : ");
+idNumber = sc.next();
+int un = userIDNUMBER(idNumber, people);
+while (flag) {
+System.out.println();
+System.out.println("Make a choice......");
+System.out.println("1.Balance inquiry ");
+System.out.println("2.Withdraw money ");
+System.out.println("3.Deposit money");
+System.out.println("4.Money Transfer ");
+System.out.println("5.Create Acc1 ");
+System.out.println("6.Deactivate Acc1");
+System.out.println("7.Exit ");
+choice = sc.nextInt();
+switch (choice) {
+case 1 -> {
+System.out.println("Acc1 Number : " + idNumber);
+System.out.println("Current Balance : " +
+people.get(un).getBalance());
+}
+case 2 -> {
+System.out.println("Enter Amount To Withdraw : ");
+amt = sc.nextDouble();
+people.get(un).withdraw(amt);
+}
+case 3 -> {
+System.out.println("Enter Amount To Deposit : ");
+amt = sc.nextInt();
+people.get(un).deposit(amt);
+}
+case 4 -> {
+System.out.println("Enter Acc1 Number To Transfer Money :");
+idNumber2 = sc.next();
+int u2 = userIDNUMBER(idNumber2, people);
+System.out.println("Enter Amount To Transfer : ");
+amt = sc.nextInt();
+people.get(un).MoneyTransfer(people.get(u2),amt);
+}
+case 5 -> {
+people.add(new Atm());
+System.out.println("Acc1 Created Successfully.");
+System.out.println("The New Acc1 Number Is :" +
+people.get(people.size() - 1).getIdNumber());
+}
+case 6 -> {
+people.remove(un);
+System.out.println("Acc1 Deleted Successfully.");
+flag = false;
+}
+CE 251 : JAVA PROGRAMMING 21CE033
+case 7 -> flag = false;
+default -> System.out.println("Make a validNumber choice..");
+}
+}
+}
+public static int userIDNUMBER(String idNumber,
+ArrayList<Atm>people) {
+Scanner s = new Scanner(System.in);
+int user = 10000;
+int i;
+for (i = 0; i < people.size(); i++) {
+if (idNumber.equals(people.get(i).getIdNumber())) {
+user = i;
+break;
+}
+}
+if (i == people.size()) {
+System.out.println("No Such Acc1 Exists.\nTry Again..");
+System.out.println("Enter your acc1 idNumber :");
+idNumber = s.next();
+return userIDNUMBER(idNumber, people);
+}
+else {
+return user;
+}
+}
+}
+
+
+
