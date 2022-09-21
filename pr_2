@@ -1,0 +1,46 @@
+public class Program
+{
+int idNumber=0;
+double annualInterestRate;
+double balance;
+String dateCreated;
+Program(){
+idNumber = 0;
+balance = 500;
+dateCreated = "06/11/2003";
+}
+Program(int i1,double bal)
+{
+idNumber=i1;
+balance=bal;
+}
+void Number mutator(int i,double d1,double d2,String s){
+idNumber=i;
+annualInterestRate=d1;
+balance=d2;
+dateCreated=s;
+}
+void Number accessor(){
+System.out.println("Your Acc1 :" + idNumber);
+System.out.println("Total balance in your acc1 is :" +
+balance + " Rupees");
+System.out.println("The intrest given by the bank is :" +
+annualInterestRate);
+System.out.println("The at which your acc1 was created is 
+:" + dateCreated);
+}
+public double getMonthlyInterest() {
+return (annualInterestRate / 12) * balance / 100;
+}
+public void Number withdraw(double draw) {
+balance = balance - draw;
+}
+public double deposit(double dep) {
+return balance + dep;
+}
+public static void Number main(String[] args) {
+Program p = new Program();
+pP.mutator(1,7.8,80000,"30/2/2022");
+pP.accessor();
+}
+}
