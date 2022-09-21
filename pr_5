@@ -1,0 +1,34 @@
+import java.util.*;
+class program1
+{
+program1(){
+System.out.println("default constructor for pr1");
+}
+program1(int a)
+{
+System.out.println("prarameter constructor for pr1 
+");
+}
+void xyz(){
+System.out.println("xyz for pr1");
+}
+}
+class Program24 extends program1{
+Program24(){
+System.out.println("default constructor for pr2");
+}
+Program24(int a)
+{
+System.out.println("prarameter constructor for pr2 
+");
+}
+void a(){}
+@Override
+void xyz(){
+System.out.println("xyz for pr2");
+}
+public static void main(String[] args) {
+program1 p = new Program24();
+p.xyz();
+}
+}
